@@ -2,6 +2,8 @@
 
 [English](README.md) | [한국어](README.ko.md) | [日本語](README.ja.md)
 
+![Local terminal: a high-urgency PFE query retrieves an event and prints its White House source URL](assets/local-bedrock-cli-demo.png)
+
 Insighta Toolkit is a reference implementation for building a financial-event
 retrieval application. It turns a JSONL file of multilingual events into
 searchable evidence, then lets a user ask questions whose answers can cite the
@@ -63,7 +65,10 @@ event search tool, produces a concise answer, and returns the URL that supports
 it. It is the fastest way to see whether your data, embedding model, and
 retrieval settings produce useful evidence.
 
-![Local terminal: a high-urgency PFE query retrieves an event and prints its White House source URL](assets/local-bedrock-cli-demo.png)
+When you take the workflow into an application, keep that evidence visible: a
+readable answer should retain retrieved-source references for inspection.
+
+![Hosted financial-research response: a market-sentiment answer with visible source trace references](assets/bedrock-agent-demo.png)
 
 The index is stored in `.local/insighta.db`; it is local-only and ignored by
 Git. The [local quick start](docs/local-strands.md) explains provider settings,
@@ -82,8 +87,6 @@ prerequisites, build, deployment, ingestion, and invocation sequence.
 For a user-facing application, preserve the same evidence-grounded interaction:
 a readable answer with retrieved-source references available for inspection,
 rather than an untraceable model claim.
-
-![Hosted financial-research response: a market-sentiment answer with visible source trace references](assets/bedrock-agent-demo.png)
 
 ## Included sample
 

@@ -2,6 +2,8 @@
 
 [English](README.md) | [한국어](README.ko.md) | [日本語](README.ja.md)
 
+![ローカル端末: 緊急度の高いPFE質問がイベントを検索し、ホワイトハウスの情報源URLを表示する画面](assets/local-bedrock-cli-demo.png)
+
 Insighta Toolkitは、金融イベント検索アプリケーションを構築するための参照実装です。
 多言語イベントJSONLを検索可能な根拠に変換し、元の情報源URLを引用する回答を返せます。
 
@@ -52,7 +54,10 @@ uv run --extra local python -m apps.local.main chat "緊急度の高いイベン
 回答とそれを裏付ける情報源URLを返します。データ、埋め込みモデル、検索設定が有用な根拠を
 作るかを最も速く確かめる方法です。
 
-![ローカル端末: 緊急度の高いPFE質問がイベントを検索し、ホワイトハウスの情報源URLを表示する画面](assets/local-bedrock-cli-demo.png)
+ワークフローをアプリケーションへ展開するときも、この根拠を残してください。読みやすい
+回答には、確認できる検索ソース参照が残るべきです。
+
+![ホスト型金融リサーチ応答: 市場センチメント回答と確認可能な情報源trace参照](assets/bedrock-agent-demo.png)
 
 インデックスはGitから除外される`.local/insighta.db`に保存されます。詳細は
 [ローカルクイックスタート](docs/local-strands.md)を参照してください。
@@ -65,8 +70,6 @@ AWS経路は`apps/agentcore`をパッケージ化し、OpenTofuでランタイ�
 
 ユーザー向けアプリケーションでも同じ根拠ベースの対話を保ちます。追跡できないモデルの
 主張ではなく、読みやすい回答と確認可能な検索ソース参照を提供してください。
-
-![ホスト型金融リサーチ応答: 市場センチメント回答と確認可能な情報源trace参照](assets/bedrock-agent-demo.png)
 
 ## 同梱サンプル
 

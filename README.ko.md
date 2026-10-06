@@ -2,6 +2,8 @@
 
 [English](README.md) | [한국어](README.ko.md) | [日本語](README.ja.md)
 
+![로컬 터미널: 고긴급 PFE 질문이 이벤트를 검색하고 백악관 출처 URL을 출력하는 화면](assets/local-bedrock-cli-demo.png)
+
 Insighta Toolkit은 금융 이벤트 검색 애플리케이션을 만들기 위한 참조 구현입니다. 다국어
 이벤트 JSONL을 검색 가능한 근거로 만들고, 사용자가 원문 출처 URL을 인용하는 답변을 받을 수
 있게 합니다.
@@ -55,7 +57,10 @@ uv run --extra local python -m apps.local.main chat "고긴급 이벤트를 요�
 답변과 이를 뒷받침하는 출처 URL을 함께 반환합니다. 데이터, 임베딩 모델, 검색 설정이 유용한
 근거를 만드는지 가장 빠르게 확인하는 방법입니다.
 
-![로컬 터미널: 고긴급 PFE 질문이 이벤트를 검색하고 백악관 출처 URL을 출력하는 화면](assets/local-bedrock-cli-demo.png)
+워크플로를 애플리케이션으로 확장할 때도 이 근거를 보존하세요. 읽기 쉬운 답변에는 확인할 수
+있는 검색 출처 참조가 남아야 합니다.
+
+![호스팅 금융 리서치 응답: 시장 심리 답변과 확인 가능한 출처 trace 참조](assets/bedrock-agent-demo.png)
 
 인덱스는 Git에서 제외되는 로컬 `.local/insighta.db`에 저장됩니다. 제공자 설정, 데이터베이스
 선택, 모델 변경은 [로컬 빠른 시작](docs/local-strands.md)을 참고하세요.
@@ -71,8 +76,6 @@ AWS 경로는 `apps/agentcore`를 패키징하고 OpenTofu로 런타임과 벡�
 
 사용자용 애플리케이션에서도 같은 근거 기반 상호작용을 유지하세요. 추적할 수 없는 모델 주장
 대신, 읽기 쉬운 답변과 확인 가능한 검색 출처 참조를 제공해야 합니다.
-
-![호스팅 금융 리서치 응답: 시장 심리 답변과 확인 가능한 출처 trace 참조](assets/bedrock-agent-demo.png)
 
 ## 포함된 샘플
 
