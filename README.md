@@ -58,6 +58,13 @@ uv run --extra local python -m apps.local.main index sample/202608_60x3.jsonl
 uv run --extra local python -m apps.local.main chat "Summarize high-urgency events and cite the source URLs."
 ```
 
+The terminal makes the retrieval step visible: the question calls the financial
+event search tool, produces a concise answer, and returns the URL that supports
+it. It is the fastest way to see whether your data, embedding model, and
+retrieval settings produce useful evidence.
+
+![Local terminal: a high-urgency PFE query retrieves an event and prints its White House source URL](assets/local-bedrock-cli-demo.png)
+
 The index is stored in `.local/insighta.db`; it is local-only and ignored by
 Git. The [local quick start](docs/local-strands.md) explains provider settings,
 database selection, and model overrides.
@@ -71,6 +78,12 @@ organization's access controls, monitoring, or data governance.
 
 Follow the [AWS AgentCore quick start](docs/getting-started.md) for the exact
 prerequisites, build, deployment, ingestion, and invocation sequence.
+
+For a user-facing application, preserve the same evidence-grounded interaction:
+a readable answer with retrieved-source references available for inspection,
+rather than an untraceable model claim.
+
+![Hosted financial-research response: a market-sentiment answer with visible source trace references](assets/bedrock-agent-demo.png)
 
 ## Included sample
 

@@ -48,6 +48,12 @@ uv run --extra local python -m apps.local.main index sample/202608_60x3.jsonl
 uv run --extra local python -m apps.local.main chat "緊急度の高いイベントを要約し、情報源URLを引用してください。"
 ```
 
+端末では検索ステップをそのまま確認できます。質問は金融イベント検索ツールを呼び、簡潔な
+回答とそれを裏付ける情報源URLを返します。データ、埋め込みモデル、検索設定が有用な根拠を
+作るかを最も速く確かめる方法です。
+
+![ローカル端末: 緊急度の高いPFE質問がイベントを検索し、ホワイトハウスの情報源URLを表示する画面](assets/local-bedrock-cli-demo.png)
+
 インデックスはGitから除外される`.local/insighta.db`に保存されます。詳細は
 [ローカルクイックスタート](docs/local-strands.md)を参照してください。
 
@@ -56,6 +62,11 @@ uv run --extra local python -m apps.local.main chat "緊急度の高いイベン
 AWS経路は`apps/agentcore`をパッケージ化し、OpenTofuでランタイムとベクトルストレージを
 構成して、同じJSONL契約を取り込みます。手順は
 [AWS AgentCoreクイックスタート](docs/getting-started.md)を参照してください。
+
+ユーザー向けアプリケーションでも同じ根拠ベースの対話を保ちます。追跡できないモデルの
+主張ではなく、読みやすい回答と確認可能な検索ソース参照を提供してください。
+
+![ホスト型金融リサーチ応答: 市場センチメント回答と確認可能な情報源trace参照](assets/bedrock-agent-demo.png)
 
 ## 同梱サンプル
 

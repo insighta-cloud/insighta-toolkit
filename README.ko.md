@@ -51,6 +51,12 @@ uv run --extra local python -m apps.local.main index sample/202608_60x3.jsonl
 uv run --extra local python -m apps.local.main chat "고긴급 이벤트를 요약하고 출처 URL을 인용해줘."
 ```
 
+터미널에서는 검색 단계가 그대로 드러납니다. 질문은 금융 이벤트 검색 도구를 호출하고, 짧은
+답변과 이를 뒷받침하는 출처 URL을 함께 반환합니다. 데이터, 임베딩 모델, 검색 설정이 유용한
+근거를 만드는지 가장 빠르게 확인하는 방법입니다.
+
+![로컬 터미널: 고긴급 PFE 질문이 이벤트를 검색하고 백악관 출처 URL을 출력하는 화면](assets/local-bedrock-cli-demo.png)
+
 인덱스는 Git에서 제외되는 로컬 `.local/insighta.db`에 저장됩니다. 제공자 설정, 데이터베이스
 선택, 모델 변경은 [로컬 빠른 시작](docs/local-strands.md)을 참고하세요.
 
@@ -62,6 +68,11 @@ AWS 경로는 `apps/agentcore`를 패키징하고 OpenTofu로 런타임과 벡�
 
 정확한 사전 요구사항, 빌드, 배포, 적재, 호출 순서는
 [AWS AgentCore 빠른 시작](docs/getting-started.md)을 따르세요.
+
+사용자용 애플리케이션에서도 같은 근거 기반 상호작용을 유지하세요. 추적할 수 없는 모델 주장
+대신, 읽기 쉬운 답변과 확인 가능한 검색 출처 참조를 제공해야 합니다.
+
+![호스팅 금융 리서치 응답: 시장 심리 답변과 확인 가능한 출처 trace 참조](assets/bedrock-agent-demo.png)
 
 ## 포함된 샘플
 
