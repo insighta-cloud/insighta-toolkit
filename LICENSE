@@ -1,0 +1,106 @@
+# Insighta Toolkit License
+
+**Copyright © 2026 insighta cloud Inc. All rights reserved.**
+
+---
+
+## License Grant
+
+This toolkit (including all source code, documentation, and sample data) is provided by insighta cloud Inc. under the following terms:
+
+### Permitted Uses
+
+You are granted a **non-exclusive, non-transferable, royalty-free license** to:
+
+- ✅ Use this toolkit for **personal learning and research purposes**
+- ✅ Use this toolkit for **internal testing and evaluation** (non-production environments)
+- ✅ Use this toolkit for **academic research** (with proper attribution)
+- ✅ Deploy this toolkit in **production environments** if you have purchased the corresponding dataset from insighta cloud Inc. (subject to the dataset's license terms)
+
+### Prohibited Uses
+
+You are **NOT permitted** to:
+
+- ❌ Use this toolkit or any part of it for **commercial purposes** without a separate written agreement with insighta cloud Inc.
+- ❌ **Modify, adapt, or create derivative works** based on this toolkit
+- ❌ **Redistribute, sublicense, sell, or transfer** this toolkit (in original or modified form) to any third party
+- ❌ Use the included **sample data** for any production or commercial services
+- ❌ **Remove or alter** any copyright notices, trademarks, or attribution statements
+
+### What Constitutes Commercial Use
+
+Commercial use includes, but is not limited to:
+
+- Building or operating a commercial service, API, or product using this toolkit
+- Using this toolkit as part of a revenue-generating business operation
+- Offering consulting or professional services that involve deploying this toolkit for clients
+- Integrating this toolkit into commercial software or SaaS platforms
+
+**Exception**: Internal use within a company for testing and evaluation purposes (non-production) is permitted.
+
+---
+
+## Sample Data License
+
+The sample dataset included in this toolkit (`sample/202608_60x3.jsonl`) is provided solely for:
+
+- Evaluation and testing of the toolkit's functionality
+- Understanding the data structure before purchasing the full dataset
+
+**Prohibited:**
+- Using sample data in any production environment
+- Extracting, modifying, or redistributing sample data
+- Building commercial services based on sample data
+
+For access to the full dataset with commercial usage rights, visit: https://aws.amazon.com/marketplace/seller-profile?id=seller-ahk55ljrhr4wu
+
+---
+
+## Attribution Requirement
+
+If you use this toolkit in academic research or publications, you must provide the following attribution:
+
+```
+Insighta Toolkit by insighta cloud Inc.
+https://insighta.cloud
+```
+
+---
+
+## Commercial License Exception
+
+If you wish to use this toolkit for commercial purposes, you must obtain a separate written agreement from insighta cloud Inc.
+
+**Contact us for commercial licensing:**
+- Email: support@insighta.cloud
+- Website: https://insighta.cloud
+
+---
+
+## Disclaimer of Warranty
+
+THIS TOOLKIT IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+IN NO EVENT SHALL INSIGHTA CLOUD INC. BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE TOOLKIT OR THE USE OR OTHER DEALINGS IN THE TOOLKIT.
+
+---
+
+## Termination
+
+This license is effective until terminated. Your rights under this license will terminate automatically without notice if you fail to comply with any of its terms. Upon termination, you must cease all use of the toolkit and destroy all copies in your possession.
+
+---
+
+## Governing Law
+
+This license shall be governed by and construed in accordance with the laws of the jurisdiction in which insighta cloud Inc. is registered, without regard to its conflict of law provisions.
+
+---
+
+**Provider**: insighta cloud Inc.  
+**Contact**: support@insighta.cloud  
+**Website**: https://insighta.cloud
+
+---
+
+© 2026 insighta cloud Inc. All rights reserved.

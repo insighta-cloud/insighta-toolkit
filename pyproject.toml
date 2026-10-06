@@ -1,0 +1,42 @@
+[project]
+name = "insighta-toolkit"
+version = "0.1.0"
+description = "AWS and local evaluation toolkit for Insighta financial-event JSONL data."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "bedrock-agentcore>=1.24,<2",
+  "boto3>=1.42,<2",
+  "strands-agents>=1.57,<2",
+]
+
+[project.optional-dependencies]
+local = [
+  "openai>=2.30,<3",
+  "sqlite-vec>=0.1.6,<1",
+]
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src-python"]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.3,<9",
+  "ruff>=0.16,<0.17",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["apps", "src-python", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = [".", "src-python"]

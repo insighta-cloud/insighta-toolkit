@@ -1,0 +1,1 @@
+"""AgentCore-hosted Strands application."""

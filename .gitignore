@@ -1,0 +1,16 @@
+package-lock.json
+.aws-sam
+.cache
+node_modules
+.venv
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+infra/.terraform/
+infra/.build/
+.runtime-package/
+.local/
+*.egg-info/
+infra/*.tfstate
+infra/*.tfstate.*
+infra/*.tfplan
