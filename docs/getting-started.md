@@ -47,3 +47,25 @@ uv run python -m insighta_toolkit.ingestion ../sample/202608_60x3.jsonl \
 Use the AgentCore Runtime ARN from `tofu output -raw agent_runtime_arn` with
 the AgentCore invocation API. See [agentcore-runtime.md](agentcore-runtime.md)
 for the payload contract.
+
+## Clean up
+
+Destroy only the resources from the exact `infra/` state you intend to retire.
+`tofu destroy` removes the AgentCore runtime, IAM roles, S3 Vectors resources,
+and the records bucket defined by this root. It cannot remove a non-empty S3
+bucket automatically.
+
+First inspect the plan. If the records bucket contains only data you intend to
+delete, empty that exact bucket, then run the destroy operation. Emptying a
+bucket permanently removes its objects.
+
+```bash
+cd infra
+tofu plan -destroy
+records_bucket="$(tofu output -raw records_bucket_name)"
+aws s3 rm "s3://${records_bucket}" --recursive
+tofu destroy
+```
+
+Do not run these commands against a shared or production state until you have
+confirmed the account, Region, state backend, and bucket name.

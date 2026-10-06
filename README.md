@@ -2,34 +2,140 @@
 
 [English](README.md) | [한국어](README.ko.md) | [日本語](README.ja.md)
 
-Evaluate the included multilingual financial-event JSONL sample through either
-of the supported applications.
+Insighta Toolkit is a reference implementation for building a financial-event
+retrieval application. It turns a JSONL file of multilingual events into
+searchable evidence, then lets a user ask questions whose answers can cite the
+underlying source URLs.
 
-## Choose a path
+It is deliberately a toolkit: it shows the application shape, retrieval
+contract, and deployment choices that a team can adapt to its own data and
+models. The included JSONL is a small fixture for trying the code, not the
+purpose of this repository.
 
-| AWS AgentCore | Local Strands + Bedrock |
+## What you can run
+
+The repository contains two implementations of the same workflow.
+
+| Path | What runs | Best for |
+| --- | --- | --- |
+| **Local Strands + Bedrock** | JSONL records and vector search stay in a local SQLite database; Bedrock provides embeddings and chat. | Trying the workflow on one machine and inspecting retrieval results directly. |
+| **AWS AgentCore** | A Strands retrieval agent runs in AgentCore Runtime; OpenTofu provisions S3 and S3 Vectors. | A deployable AWS reference architecture. |
+
+Both paths answer from retrieved records rather than treating a model response
+as a source of truth. Every result retains the original event URL so a user can
+open and verify the cited material.
+
+## How it works
+
+```text
+JSONL event records
+        │
+        ├── validate id, language, title, content, and metadata
+        ├── create one searchable document per language
+        ├── embed title + content
+        └── retrieve relevant records for a question
+                                      │
+                                      ▼
+                         Strands agent response
+                         with source URLs to verify
+```
+
+The shared record contract gives each logical event an `id`, a language-specific
+`title` and `content`, ticker metadata, urgency and sentiment fields, and source
+provenance. The local and AWS paths use that same contract, so an application
+can move between them without redesigning its input shape.
+
+## Start locally
+
+The local app is the fastest way to understand the Toolkit. Configure AWS
+credentials that can use the selected Bedrock models, then index the sample and
+ask a question:
+
+```bash
+export AWS_PROFILE=<your-profile>
+uv sync --extra local
+uv run --extra local python -m apps.local.main index sample/202608_60x3.jsonl
+uv run --extra local python -m apps.local.main chat "Summarize high-urgency events and cite the source URLs."
+```
+
+The index is stored in `.local/insighta.db`; it is local-only and ignored by
+Git. The [local quick start](docs/local-strands.md) explains provider settings,
+database selection, and model overrides.
+
+## Deploy the AWS reference path
+
+The AWS path packages `apps/agentcore`, provisions the runtime and vector
+storage with OpenTofu, then ingests the same JSONL contract. It is intended as
+an infrastructure and application reference, not as a replacement for an
+organization's access controls, monitoring, or data governance.
+
+Follow the [AWS AgentCore quick start](docs/getting-started.md) for the exact
+prerequisites, build, deployment, ingestion, and invocation sequence.
+
+## Included sample
+
+[`sample/202608_60x3.jsonl`](sample/202608_60x3.jsonl) is a compact,
+multilingual test fixture for the Toolkit. It contains 60 logical events and
+180 records: one English (`en`), Korean (`ko`), and Japanese (`ja`) record per
+event. Use it to confirm that your environment can:
+
+- parse UTF-8 JSONL;
+- retrieve the same event across three languages;
+- filter or rank by ticker and urgency metadata; and
+- return a source URL with an answer.
+
+Each line is a public event record with these core fields:
+
+| Fields | Purpose in the Toolkit |
 | --- | --- |
-| Deploy a Strands retrieval agent with OpenTofu, S3 Vectors, and AgentCore Runtime. | Keep the JSONL records and vector index in a local SQLite database while using Bedrock for embeddings and chat. |
-| [AWS quick start](docs/getting-started.md) | [Local quick start](docs/local-strands.md) |
+| `id`, `language` | Align the three language records for one event. |
+| `title`, `content` | Supply the text sent to the embedding and retrieval layers. |
+| `tickers`, `urgency_level`, `sentiment_score` | Support structured filtering and ranking. |
+| `source`, `source_name`, `author`, `created_at` | Let an application present provenance alongside an answer. |
 
-Both paths use the same public JSONL schema and preserve source URLs for
-evidence-grounded answers.
+The sample is an evaluation asset, not a real-time feed or investment advice.
+For consequential use, verify any generated answer against the linked primary
+source.
 
-## Sample dataset
+## Repository layout
 
-The included sample contains 60 aligned events (180 English, Korean, and
-Japanese records). It demonstrates the public JSONL schema, source grounding,
-ticker mappings, sentiment, and urgency fields.
-
-The complete **US Financial Events: SEC & Government Sources, Multilingual
-AI-Ready Dataset** is available through
-[Datarade](https://datarade.ai/data-products/us-financial-events-sec-government-sources-multilingual-a-insighta-cloud-inc).
-For licensed dataset or API access, contact support@insighta.cloud.
+```text
+apps/local/       Local Strands application and SQLite vector store
+apps/agentcore/   AgentCore Runtime entrypoint
+infra/            OpenTofu configuration for the AWS reference path
+src-python/       Shared JSONL ingestion, retrieval, and document helpers
+sample/           Public JSONL fixture
+docs/             Local and AWS quick starts
+tests/            Unit tests for the shared retrieval contract
+```
 
 ## License
 
-See [LICENSE](LICENSE).
+SEE LICENSE IN [LICENSE](LICENSE).
+
+## Clean up AWS resources
+
+If you deployed the AWS reference path, clean it up from the same `infra/`
+state that created it. Review `tofu plan -destroy` first. The records bucket
+must be emptied before `tofu destroy` can remove it, and emptying it permanently
+deletes its objects. See the [AWS cleanup instructions](docs/getting-started.md#clean-up)
+before running either command.
+
+## About insighta cloud
+
+We are building an investment workstation for individuals — giving personal
+investors institutional-grade processes and tools. Learn more at
+[insighta.cloud/landing](https://insighta.cloud/landing).
 
 ## Contact
 
-insighta cloud Inc. · [insighta.cloud](https://insighta.cloud) · support@insighta.cloud
+- **Provider:** insighta cloud Inc.
+- **Website:** [https://insighta.cloud](https://insighta.cloud)
+- **Contact:** support@insighta.cloud
+- **AWS Marketplace:** [seller profile](https://aws.amazon.com/marketplace/seller-profile?id=seller-ahk55ljrhr4wu)
+- **Datarade provider profile:** [insighta cloud Inc.](https://datarade.ai/data-providers/insighta-cloud-inc/profile)
+- **LinkedIn:** [cho-insighta-cloud](https://www.linkedin.com/in/cho-insighta-cloud/)
+
+## Author
+
+insighta cloud Inc.
